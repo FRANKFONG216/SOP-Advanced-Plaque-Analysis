@@ -3,235 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Assisted CCTA Plaque Quantification SOP</title>
+    <title>AI-Assisted CCTA Plaque Quantification SOP (Mobile)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Inter:wght@400;500;600;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fcfcfc;
-            color: #1a202c; /* 加深文字颜色 */
-            line-height: 1.8; /* 增加行高 */
-            font-size: 1.15rem; /* 整体字体放大 */
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
 
-        .journal-header {
+        .journal-title {
             font-family: 'Noto Serif SC', serif;
-            border-bottom: 3px solid #1a202c;
+            letter-spacing: -0.02em;
         }
 
-        .section-title {
+        .section-header {
             font-family: 'Noto Serif SC', serif;
-            color: #1a202c;
-            border-left: 6px solid #3182ce;
-            padding-left: 1.25rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            font-size: 1.5rem; /* 标题放大 */
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+            font-size: 1.4rem;
         }
 
-        .data-card {
-            background: #ffffff;
+        .mobile-card {
+            background: white;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
         }
 
-        .hardware-accent {
-            background-color: #f7fafc;
-            border: 1px solid #bee3f8;
-            border-radius: 8px;
-            padding: 2rem;
-        }
-
-        .high-risk-tag {
-            background-color: #fff5f5;
-            color: #c53030;
-            border: 1px solid #feb2b2;
-            font-size: 0.85rem; /* 标签放大 */
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        .step-num {
-            font-family: 'Noto Serif SC', serif;
+        .metric-label {
+            font-size: 0.85rem;
             font-weight: 700;
-            color: #3182ce;
-            font-size: 1.75rem; /* 步骤数字放大 */
+            text-transform: uppercase;
+            color: #64748b;
+            display: block;
+            margin-bottom: 0.25rem;
         }
 
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        th {
-            font-size: 1.1rem !important;
-        }
-
-        td {
-            font-size: 1.05rem !important;
-            padding: 1.25rem 1.5rem !important;
-        }
-
-        .value-highlight {
-            font-size: 2.5rem;
+        .metric-value {
+            font-size: 1.8rem;
             font-weight: 800;
+            color: #0f172a;
             line-height: 1;
         }
 
-        @media print {
-            body { background: white; font-size: 12pt; }
-            .no-print { display: none; }
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #ffffff;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-circle {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .high-risk-indicator {
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tech-info {
+            background: #f1f5f9;
+            padding: 1.25rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .badge-red {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
         }
     </style>
 </head>
-<body class="p-6 md:p-16">
+<body class="p-4 sm:p-8">
 
-<div class="max-w-6xl mx-auto">
-    <!-- Journal Style Header -->
-    <header class="journal-header pb-8 mb-12 flex flex-col md:flex-row justify-between items-baseline">
-        <div>
-            <h1 class="text-4xl font-bold">人工智能辅助 CCTA 斑块量化评估路径</h1>
-            <p class="text-slate-500 mt-4 text-xl font-medium italic underline underline-offset-8 decoration-slate-200">Standard Operating Procedure for Advanced Plaque Analysis</p>
-        </div>
-        <div class="text-right mt-6 md:mt-0">
-            <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">GE Revolution CT × Shukun AI</p>
-            <p class="text-sm font-bold text-slate-500">Version 2024.Q4 | Clinical Research Mode</p>
-        </div>
-    </header>
+    <div class="max-w-xl mx-auto">
+        <!-- Header -->
+        <header class="mb-10 pt-4">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-blue-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">Clinical SOP</span>
+                <span class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Mobile Optimized</span>
+            </div>
+            <h1 class="journal-title text-3xl font-bold leading-tight mb-2">冠脉斑块 AI 量化评估路径</h1>
+            <p class="text-slate-500 text-sm italic italic">Standard Operating Procedure for Advanced Plaque Analysis</p>
+            <div class="mt-4 flex justify-between items-center text-[11px] font-bold text-slate-400 border-t border-b border-slate-100 py-2">
+                <span>GE REVOLUTION CT × 数坤AI</span>
+                <span>V2024.Q4</span>
+            </div>
+        </header>
 
-    <!-- Part 1: Equipment & Quality Index -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="md:col-span-2 hardware-accent">
-            <h3 class="text-2xl font-bold text-blue-900 mb-4 italic">设备支撑与保障</h3>
-            <p class="text-lg text-slate-700 leading-relaxed">
-                利用 <strong>GE Revolution CT</strong> 的 <strong>SSF (SnapShot Freeze)</strong> 智能冻结技术，有效控制高心率及心律不齐产生的运动伪影。该技术确保了 CCTA 原始影像具备极高的空间分辨率，为 AI 斑块成分分解提供“无影级”数据基石。
-            </p>
-            <div class="mt-6 flex gap-10 border-t border-blue-200 pt-6">
-                <div>
-                    <span class="text-xs uppercase text-slate-400 font-black block tracking-widest mb-1">Connectivity</span>
-                    <span class="text-lg font-bold text-blue-700">数坤 AI 本地化部署 / 无缝对接</span>
-                </div>
+        <!-- KPI Metrics Row -->
+        <div class="grid grid-cols-2 gap-3 mb-8">
+            <div class="mobile-card text-center">
+                <span class="metric-label">提取成功率</span>
+                <span class="metric-value">>95%</span>
+            </div>
+            <div class="mobile-card text-center">
+                <span class="metric-label">人工相关性</span>
+                <span class="metric-value">r>0.9</span>
             </div>
         </div>
-        <div class="data-card bg-slate-50 border-slate-200">
-            <h3 class="text-xs font-black text-slate-400 mb-6 uppercase tracking-widest">质量指标 (KPI)</h3>
-            <div class="space-y-8">
+
+        <!-- Section 1: Technology -->
+        <section class="mb-10">
+            <h2 class="section-header text-blue-900">设备支撑与保障</h2>
+            <div class="tech-info">
+                <p class="mb-3 font-semibold text-slate-800 underline decoration-blue-200 underline-offset-4">GE Revolution CT (SSF 技术)</p>
+                <p class="text-slate-600 leading-relaxed text-base">
+                    通过智能冻结技术有效控制高心率及运动伪影，为 AI 提供“无影级”数据基石。已实现数坤平台无缝对接及本地化部署。
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Workflow -->
+        <section class="mb-10">
+            <h2 class="section-header">内容与方法</h2>
+            <div class="workflow-step">
+                <div class="step-circle">1</div>
                 <div>
-                    <p class="value-highlight text-slate-900">>95%</p>
-                    <p class="text-sm font-bold text-slate-500 uppercase mt-1">血管提取成功率</p>
-                </div>
-                <div>
-                    <p class="value-highlight text-slate-900">r > 0.9</p>
-                    <p class="text-sm font-bold text-slate-500 uppercase mt-1">与标准人工测量相关性</p>
+                    <p class="font-bold text-slate-900">CCTA 数据采集</p>
+                    <p class="text-[11px] text-slate-400">GE SSF 技术保障</p>
                 </div>
             </div>
-        </div>
+            <div class="workflow-step">
+                <div class="step-circle">2</div>
+                <div>
+                    <p class="font-bold text-slate-900">AI 自动提取</p>
+                    <p class="text-[11px] text-slate-400">数坤平台本地极速处理</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-circle">3</div>
+                <div>
+                    <p class="font-bold text-slate-900">量化指标运算</p>
+                    <p class="text-[11px] text-slate-400">体积、重构指数等参数</p>
+                </div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-circle">4</div>
+                <div>
+                    <p class="font-bold text-slate-900">医师审核报告</p>
+                    <p class="text-[11px] text-slate-400">临床最终确认与签发</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Detailed Quantification -->
+        <section class="mb-12">
+            <h2 class="section-header">斑块量化指标体系</h2>
+            
+            <!-- Item 1 -->
+            <div class="mobile-card">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-blue-800">斑块负荷 (PAV)</h3>
+                </div>
+                <p class="text-sm text-slate-500 mb-3 italic">斑块总体积 / 血管总体积</p>
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                    <div class="bg-slate-50 p-2 rounded">
+                        <span class="block font-bold text-slate-700">>1%</span>
+                        <span class="text-[10px] text-slate-400">提示斑块进展</span>
+                    </div>
+                    <div class="bg-rose-50 p-2 rounded">
+                        <span class="block font-bold text-rose-700">>1% / 年</span>
+                        <span class="text-[10px] text-rose-400">快速进展期</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="mobile-card">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg text-slate-800">体积指标</h3>
+                </div>
+                <p class="text-sm text-slate-600">提取 <span class="font-bold">TPV (总斑块体积)</span> 及非钙化斑块体积，用于建立个体基线及药物疗效评价。</p>
+            </div>
+
+            <!-- Item 3: High Risk Section -->
+            <div class="mobile-card border-rose-200">
+                <div class="flex items-center gap-2 mb-4">
+                    <h3 class="font-bold text-lg text-rose-800 italic">易损斑块特征识别</h3>
+                    <span class="badge-red">高危</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="high-risk-indicator">
+                        <p class="font-bold text-slate-900 text-base">低衰减斑块 (LAP)</p>
+                        <p class="text-sm text-slate-600 mt-1">识别 CT 值 <span class="font-mono bg-rose-100 px-1">< 30 HU</span> 的脂质成分。</p>
+                    </div>
+                    
+                    <div class="high-risk-indicator" style="border-left-color: #f97316;">
+                        <p class="font-bold text-slate-900 text-base">餐巾环征 (NRS)</p>
+                        <p class="text-sm text-slate-600 mt-1">基于坏死核心形态学识别，提示高度易损性。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="mobile-card">
+                <div class="grid grid-cols-1 divide-y divide-slate-100">
+                    <div class="pb-3">
+                        <p class="font-bold text-slate-800">重构指数 (RI)</p>
+                        <p class="text-sm text-slate-600">评估血管正性重构程度，衡量管壁向外代偿。 </p>
+                    </div>
+                    <div class="pt-3">
+                        <p class="font-bold text-slate-800">点状钙化</p>
+                        <p class="text-sm text-slate-600">识别高风险的不稳定性钙化点（直径 < 3mm）。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile Footer -->
+        <footer class="mt-16 pb-12 text-center">
+            <p class="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mb-4">SCCT Guidelines • CAD-RADS 2.0</p>
+            <p class="text-[10px] text-slate-400 italic">Radiology Dept Protocol | 仅供临床医学专业人员参考</p>
+        </footer>
     </div>
-
-    <!-- Part 2: Workflow -->
-    <section class="mb-16">
-        <h2 class="section-title">内容与方法 (Content & Methods)</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="data-card flex flex-col items-center text-center py-10">
-                <span class="step-num">01</span>
-                <p class="font-bold text-lg mt-4">CCTA 数据采集</p>
-                <p class="text-xs text-slate-400 mt-2 italic font-medium">GE SSF 技术保障</p>
-            </div>
-            <div class="data-card flex flex-col items-center text-center py-10">
-                <span class="step-num">02</span>
-                <p class="font-bold text-lg mt-4">AI 自动提取</p>
-                <p class="text-xs text-slate-400 mt-2 italic font-medium">数坤平台本地处理</p>
-            </div>
-            <div class="data-card flex flex-col items-center text-center py-10">
-                <span class="step-num">03</span>
-                <p class="font-bold text-lg mt-4">斑块量化分析</p>
-                <p class="text-xs text-slate-400 mt-2 italic font-medium">多参数指标运算</p>
-            </div>
-            <div class="data-card flex flex-col items-center text-center py-10 border-blue-200 bg-blue-50/30">
-                <span class="step-num">04</span>
-                <p class="font-bold text-lg mt-4">医师审核签发</p>
-                <p class="text-xs text-slate-400 mt-2 italic font-medium">临床报告最终确认</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Part 3: Plaque Quantification -->
-    <section class="mb-16">
-        <h2 class="section-title">斑块量化指标体系 (Quantitative Analysis)</h2>
-        <div class="bg-white border-2 border-slate-200 rounded-lg overflow-hidden shadow-sm">
-            <table class="w-full">
-                <thead>
-                    <tr class="bg-slate-100 border-b-2 border-slate-200">
-                        <th class="px-8 py-5 text-left font-bold text-slate-800 w-1/4">分析维度</th>
-                        <th class="px-8 py-5 text-left font-bold text-slate-800 w-1/3">量化指标/定义</th>
-                        <th class="px-8 py-5 text-left font-bold text-slate-800">临床评估价值</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y-2 divide-slate-100">
-                    <tr>
-                        <td class="font-bold text-blue-800 text-lg">斑块负荷 (PAV)</td>
-                        <td class="text-slate-600">斑块总体积 / 血管总体积</td>
-                        <td class="leading-relaxed">
-                            <span class="font-bold text-slate-900">● >1%：</span> 提示斑块进展<br>
-                            <span class="font-bold text-rose-600">● >1% / 年：</span> 定义为快速进展期
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold text-blue-800 text-lg">体积指标</td>
-                        <td class="text-slate-600">TPV (总斑块体积)<br>非钙化斑块体积</td>
-                        <td>建立个体斑块负担基线，监测药物疗效。</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold text-rose-700 italic text-lg">
-                            低衰减斑块 (LAP)
-                            <span class="high-risk-tag">高危</span>
-                        </td>
-                        <td class="font-mono font-bold text-slate-700">CT 值 < 30 HU</td>
-                        <td>识别富含脂质的易损核心，ACS 预测指标。</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold text-rose-700 italic text-lg">
-                            餐巾环征 (NRS)
-                            <span class="high-risk-tag">高危</span>
-                        </td>
-                        <td class="text-slate-600">基于高低衰减环状分布的识别算法</td>
-                        <td>提示极度不稳定的斑块解剖特征。</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold text-slate-800 text-lg">重构指数 (RI)</td>
-                        <td class="text-slate-600">评估血管正性重构程度</td>
-                        <td>评估斑块向血管外壁代偿性扩张的程度。</td>
-                    </tr>
-                    <tr>
-                        <td class="font-bold text-amber-700 text-lg">点状钙化</td>
-                        <td class="text-slate-600">直径 < 3mm 小钙化点</td>
-                        <td>识别斑块内部不连续的硬化张力点。</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Journal Footer -->
-    <footer class="mt-20 pt-10 border-t-2 border-slate-200">
-        <div class="flex flex-col md:flex-row justify-between text-xs text-slate-400 font-black uppercase tracking-widest">
-            <div class="flex gap-10">
-                <span>SCCT Guidelines Compliant</span>
-                <span>CAD-RADS™ 2.0 Integration</span>
-            </div>
-            <div class="mt-6 md:mt-0 italic">
-                Radiology Department Protocol • For Clinical Professional Use Only
-            </div>
-        </div>
-    </footer>
-</div>
 
 </body>
 </html>
